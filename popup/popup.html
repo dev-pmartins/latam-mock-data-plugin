@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <title>Gerador de dados de teste</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="header">
+    <div class="country-picker">
+      <button id="country-button" class="country-button" aria-haspopup="listbox" aria-expanded="false">
+        <span id="country-flag" class="flag"></span>
+        <span class="country-text">
+          <small>País dos dados</small>
+          <strong id="country-name"></strong>
+        </span>
+        <svg class="chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div id="country-panel" class="country-panel" hidden>
+        <input id="country-search" type="search" placeholder="Pesquisar país…" autocomplete="off" aria-label="Pesquisar país">
+        <ul id="country-list" role="listbox"></ul>
+      </div>
+    </div>
+    <button id="regenerate" class="btn btn-primary" title="Gerar novos dados">
+      <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 8a5.5 5.5 0 1 1-1.6-3.9M13.5 2.5v3h-3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Gerar
+    </button>
+  </header>
+
+  <div class="toolbar">
+    <input id="filter" type="search" placeholder="Filtrar campos (ex.: cpf, celular)" aria-label="Filtrar campos">
+    <label class="switch" title="Formatar valores com pontos, traços e parênteses">
+      <input id="masked" type="checkbox">
+      <span class="track"><span class="thumb"></span></span>
+      Máscara
+    </label>
+  </div>
+
+  <main id="fields" class="fields"></main>
+
+  <footer class="footer">
+    <button id="fill-page" class="btn">Preencher formulário da página</button>
+    <button id="copy-json" class="btn" title="Copiar todos os dados como JSON">Copiar JSON</button>
+    <details class="settings">
+      <summary>Configurações</summary>
+      <label class="switch setting-switch" title="Menu de contexto com um só nível, apenas com os itens escolhidos abaixo">
+        <input id="compact" type="checkbox">
+        <span class="track"><span class="thumb"></span></span>
+        Compact mode (menu de contexto simplificado)
+      </label>
+      <fieldset id="quick-items" class="quick-items">
+        <legend>Itens do menu rápido</legend>
+        <div id="quick-list" class="quick-list"></div>
+      </fieldset>
+      <label>
+        Domínio fixo para e-mails (opcional)
+        <input id="email-domain" type="text" placeholder="ex.: teste.empresa.com.br" spellcheck="false">
+      </label>
+      <p class="hint">
+        Clique com o botão direito em qualquer campo e use <b>Gerar dados</b>.
+        Atalhos: <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>G</kbd> (campo) e <kbd>Alt</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd> (formulário).
+      </p>
+    </details>
+  </footer>
+
+  <div id="status" class="status" role="status" aria-live="polite"></div>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

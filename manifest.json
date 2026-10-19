@@ -1,0 +1,46 @@
+{
+  "manifest_version": 3,
+  "name": "Gerador de Dados de Teste — América do Sul",
+  "short_name": "Dados de Teste",
+  "version": "1.0.0",
+  "description": "Gera nomes, documentos, telefones, endereços e outros dados fictícios no formato de cada país da América do Sul.",
+  "permissions": ["contextMenus", "storage", "scripting", "activeTab"],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "all_frames": true,
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "Gerador de dados de teste",
+    "default_popup": "popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "commands": {
+    "fill-field": {
+      "suggested_key": { "default": "Alt+Shift+G" },
+      "description": "Preencher o campo focado (detecção automática)"
+    },
+    "fill-form": {
+      "suggested_key": { "default": "Alt+Shift+F" },
+      "description": "Preencher o formulário inteiro"
+    }
+  }
+}
