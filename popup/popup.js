@@ -207,6 +207,7 @@ async function toggleQuickItem(id, input) {
 
 async function init() {
   settings = await getSettings();
+  $('version').textContent = chrome.runtime.getManifest().version;
   $('masked').checked = settings.masked;
   $('compact').checked = settings.compact;
   $('quick-items').hidden = !settings.compact;
